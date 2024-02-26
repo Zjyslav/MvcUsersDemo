@@ -22,7 +22,7 @@ public class UserService : IUserService
             Role = UserRole.Regular
         }];
 
-    private readonly PasswordHasher<string> _hasher = new PasswordHasher<string>();
+    private readonly PasswordHasher<UserModel> _hasher = new PasswordHasher<UserModel>();
     public UserPublicModel? LogIn(string username, string password)
     {
         UserModel? user = _users
@@ -33,7 +33,7 @@ public class UserService : IUserService
             return null;
 
         var result = _hasher
-            .VerifyHashedPassword(username,
+            .VerifyHashedPassword(user,
                                   user.PasswordHash,
                                   password);
 
@@ -52,9 +52,9 @@ public class UserService : IUserService
         {
             Id = _users.Max(u => u.Id) + 1,
             Name = username,
-            PasswordHash = _hasher.HashPassword(username, password),
             Role = role
         };
+        user.PasswordHash = _hasher.HashPassword(user, password);
         _users.Add(user);
         return true;
     }

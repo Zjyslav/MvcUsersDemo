@@ -19,9 +19,6 @@ public class IdentityService : IIdentityService
     }
     public async Task<bool> LogIn(string username, string password, Controller controller)
     {
-        var hasher = new PasswordHasher<string>();
-        string passwordHash = hasher.HashPassword(username, password);
-
         var user = _userService.LogIn(username, password);
         if (user is null)
             return false;
