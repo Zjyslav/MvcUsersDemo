@@ -1,0 +1,11 @@
+﻿<h2>User</h2>
+
+@if(User.Identity is not null && User.Identity.IsAuthenticated)
+{
+    <a asp-action="Logout" class="btn btn-lg btn-outline-warning">Logout</a>
+}
+else
+{
+    <a asp-action="Login" class="btn btn-lg btn-outline-primary">Login</a>
+    <a asp-action="Register" class="btn btn-lg btn-outline-secondary">Register</a>
+}
