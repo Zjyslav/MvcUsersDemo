@@ -61,6 +61,7 @@ public class UsersController : Controller
     }
 
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public IActionResult Register(RegisterUserModel model)
     {
         try
