@@ -34,7 +34,7 @@ public class UsersController : Controller
     {
         try
         {
-            if (ModelState.IsValid && await _identityService.LogIn(model.UserName, model.Password, this))
+            if (ModelState.IsValid && await _identityService.LogIn(model.UserName, model.Password))
             {
                 TempData["LoginSuccessful"] = $"You are logged in.";
                 return RedirectToAction("Index");
@@ -51,7 +51,7 @@ public class UsersController : Controller
     [Authorize]
     public async Task<IActionResult> Logout()
     {
-        await _identityService.LogOut(this);
+        await _identityService.LogOut();
         return RedirectToAction("Index");
     }
 
