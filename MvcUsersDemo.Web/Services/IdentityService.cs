@@ -31,7 +31,7 @@ public class IdentityService : IIdentityService
                     new Claim(ClaimTypes.Role, user.Role.ToString())
                 };
 
-        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+        var claimsIdentity = new ClaimsIdentity(claims, "CookieAuth");
 
         var authProperties = new AuthenticationProperties()
         {
